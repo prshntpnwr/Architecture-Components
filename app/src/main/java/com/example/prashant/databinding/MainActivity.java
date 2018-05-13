@@ -1,12 +1,14 @@
 package com.example.prashant.databinding;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.prashant.databinding.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    private Contact mViewModelProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,8 +16,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding mainBinding = DataBindingUtil.
                 setContentView(this, R.layout.activity_main);
 
-        Contact contact = new Contact(
-                "Name", "(+91) 9876543210", "name@user.com", "Home");
-        mainBinding.setContact(contact);
+        mViewModelProvider = ViewModelProviders.of(this).get(Contact.class);
+        mainBinding.setContact(mViewModelProvider);
     }
 }

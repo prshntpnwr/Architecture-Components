@@ -1,10 +1,22 @@
 package com.example.prashant.databinding;
 
+import android.arch.lifecycle.ViewModel;
+
 /**
  * Created by prashant on 15/2/18.
  */
 
-public class Contact {
+public class Contact extends ViewModel {
+
+    private String name, mobile, email, address;
+
+    public Contact() {
+        this.name = "Name";
+        this.mobile = "(+91) 9876543210";
+        this.email = "name@user.com";
+        this.address = "Home";
+    }
+
     public Contact(String name, String mobile, String email, String address) {
         this.name = name;
         this.mobile = mobile;
@@ -43,7 +55,4 @@ public class Contact {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    private String name, mobile, email, address;
-
 }
