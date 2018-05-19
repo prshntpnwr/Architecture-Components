@@ -3,13 +3,21 @@ package com.example.prashant.databinding;
 import android.arch.lifecycle.ViewModel;
 
 /**
- * Created by prashant on 15/2/18.
+ * The first time the ViewModelProviders.of method is called by MainActivity,
+ * it creates a new ViewModel instance. When this method is called again,
+ * which happens whenever onCreate is called, it will return the pre-existing
+ * ViewModel associated with the MainActivity.This is what preserves the data.
+ * checkout {@link-https://medium.com/google-developers/viewmodels-a-simple-example-ed5ac416317e}
+ * for starters
  */
-
 public class Contact extends ViewModel {
-
+    // data to be maintain during activity life cycle
     private String name, mobile, email, address;
 
+    /**
+     * do heavy lifting tasks such as transient data fetch from remote server / local db or process here
+     * for now we're just create dummy data
+     */
     public Contact() {
         this.name = "Name";
         this.mobile = "(+91) 9876543210";
@@ -17,6 +25,9 @@ public class Contact extends ViewModel {
         this.address = "Home";
     }
 
+    /**
+     * parameterized contructor for setting data directly
+     */
     public Contact(String name, String mobile, String email, String address) {
         this.name = name;
         this.mobile = mobile;
@@ -24,6 +35,9 @@ public class Contact extends ViewModel {
         this.address = address;
     }
 
+    /**
+     * getting and setter methods
+     */
     public String getName() {
         return name;
     }
