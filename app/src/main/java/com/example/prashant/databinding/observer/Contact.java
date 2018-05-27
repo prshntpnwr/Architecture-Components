@@ -1,4 +1,4 @@
-package com.example.prashant.databinding;
+package com.example.prashant.databinding.observer;
 
 import android.arch.lifecycle.ViewModel;
 

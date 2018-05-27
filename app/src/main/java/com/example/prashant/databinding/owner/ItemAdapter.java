@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.prashant.databinding.Contact;
+import com.example.prashant.databinding.observer.Contact;
 import com.example.prashant.databinding.databinding.ContactBinding;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
-    ArrayList<Contact> contactArrayList = new ArrayList<>();
+    private ArrayList<Contact> contactArrayList;
 
     public ItemAdapter(ArrayList<Contact> contactArrayList) {
         this.contactArrayList = contactArrayList;
@@ -37,15 +37,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         return contactArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final ContactBinding binding;
 
-        public ViewHolder(ContactBinding binding) {
+        ViewHolder(ContactBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void bind(Contact item) {
+        void bind(Contact item) {
             Log.d("Item Adapter ", item.getName());
             binding.setContact(item);
             binding.executePendingBindings();

@@ -5,7 +5,7 @@
     <data class="ContactBinding">
         <variable
             name="contact"
-            type="com.example.prashant.databinding.Contact" />
+            type="com.example.prashant.databinding.observer.Contact" />
     </data>
 
     <LinearLayout
@@ -18,7 +18,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
-            android:layout_margin="8dp">
+            android:layout_margin="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
