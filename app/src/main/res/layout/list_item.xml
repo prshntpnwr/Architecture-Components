@@ -5,7 +5,7 @@
     <data class="ContactBinding">
         <variable
             name="contact"
-            type="com.example.prashant.databinding.observer.Contact" />
+            type="com.example.prashant.databinding.data.Contact" />
     </data>
 
     <LinearLayout
