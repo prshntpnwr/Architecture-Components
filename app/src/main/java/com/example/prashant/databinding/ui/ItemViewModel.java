@@ -8,11 +8,12 @@ import com.example.prashant.databinding.data.Contact;
 import com.example.prashant.databinding.repo.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 class ItemViewModel extends ViewModel {
-    private MutableLiveData<ArrayList<Contact>> contacts;
+    private LiveData<List<Contact>> contacts;
     private Repository repository;
 
     @Inject
@@ -20,7 +21,7 @@ class ItemViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<ArrayList<Contact>> getContacts() {
-        return contacts == null ? repository.get() : contacts;
+    public LiveData<List<Contact>> getContacts() {
+        return this.contacts == null ? repository.get() : contacts;
     }
 }

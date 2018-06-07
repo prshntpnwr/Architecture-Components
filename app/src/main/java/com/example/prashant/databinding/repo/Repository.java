@@ -1,11 +1,12 @@
 package com.example.prashant.databinding.repo;
 
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.LiveData;
 
-import com.example.prashant.databinding.data.ContactDao;
 import com.example.prashant.databinding.data.Contact;
+import com.example.prashant.databinding.data.ContactDao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class Repository {
         this.executor = executor;
     }
 
-    public MutableLiveData<ArrayList<Contact>> get() {
+    public LiveData<List<Contact>> get() {
         refreshTask();
         return contactDao.loadAll();
     }
@@ -36,7 +37,7 @@ public class Repository {
         executor.execute(() -> {
             int i = 0;
             do {
-                contactDao.save(new Contact("Name",
+                contactDao.save(new Contact(String.valueOf(i+1), "Name",
                         "111-222-3333", "a@b.com", "random"));
                 i++;
             } while (i < 10);

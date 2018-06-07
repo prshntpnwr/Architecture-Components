@@ -1,6 +1,9 @@
 package com.example.prashant.databinding.data;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 /**
  * The first time the ViewModelProviders.of method is called by MainActivity,
@@ -13,23 +16,20 @@ import android.arch.persistence.room.Entity;
 @Entity(tableName = "contact")
 public class Contact {
     // data to be maintain during activity life cycle
-    private String id, name, mobile, email, address;
+    @PrimaryKey
+    @NonNull
+    private String id;
+    private String name, mobile, email, address;
 
-    /**
-     * do heavy lifting tasks such as transient data fetch from remote server / local db or process here
-     * for now we're just create dummy data
-     */
     public Contact() {
-        this.name = "Name";
-        this.mobile = "(+91) 9876543210";
-        this.email = "name@user.com";
-        this.address = "Home";
     }
 
     /**
      * parameterized constructor for setting data directly
      */
-    public Contact(String name, String mobile, String email, String address) {
+    @Ignore
+    public Contact(String id, String name, String mobile, String email, String address) {
+        this.id = id;
         this.name = name;
         this.mobile = mobile;
         this.email = email;
@@ -39,6 +39,14 @@ public class Contact {
     /**
      * getting and setter methods
      */
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

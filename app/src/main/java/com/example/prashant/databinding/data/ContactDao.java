@@ -1,11 +1,11 @@
 package com.example.prashant.databinding.data;
 
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
@@ -15,8 +15,8 @@ public interface ContactDao {
     void save(Contact contact);
 
     @Query("SELECT * FROM contact WHERE id = :id")
-    MutableLiveData<Contact> load(String id);
+    LiveData<Contact> load(String id);
 
     @Query("SELECT * FROM contact")
-    MutableLiveData<ArrayList<Contact>> loadAll();
+    LiveData<List<Contact>> loadAll();
 }

@@ -1,5 +1,6 @@
 package com.example.prashant.databinding.ui;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,18 +18,19 @@ import java.util.ArrayList;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private ArrayList<Contact> contactArrayList;
 
-    public ItemAdapter(ArrayList<Contact> contactArrayList) {
+    ItemAdapter(ArrayList<Contact> contactArrayList) {
         this.contactArrayList = contactArrayList;
     }
 
+    @NonNull
     @Override
-    public ItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ContactBinding itemBinding = ContactBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(ItemAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemAdapter.ViewHolder holder, int position) {
         holder.bind(contactArrayList.get(position));
     }
 
