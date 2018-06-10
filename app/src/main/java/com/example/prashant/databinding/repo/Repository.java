@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 
 import com.example.prashant.databinding.data.Contact;
 import com.example.prashant.databinding.data.ContactDao;
+import com.example.prashant.databinding.remote.Webservice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,13 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 
 public class Repository {
+    private Webservice webservice;
     private ContactDao contactDao;
     private Executor executor;
 
     @Inject
-    public Repository(ContactDao contactDao, Executor executor) {
+    public Repository(Webservice webservice, ContactDao contactDao, Executor executor) {
+        this.webservice = webservice;
         this.contactDao = contactDao;
         this.executor = executor;
     }

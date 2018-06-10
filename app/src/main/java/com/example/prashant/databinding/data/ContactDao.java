@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -19,4 +20,11 @@ public interface ContactDao {
 
     @Query("SELECT * FROM contact")
     LiveData<List<Contact>> loadAll();
+
+    @Query("DELETE FROM contact WHERE id = :id")
+    void delete(String id);
+
+    @Update
+    void update(Contact contact);
+
 }

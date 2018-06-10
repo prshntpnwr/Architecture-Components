@@ -1,18 +1,16 @@
-package com.example.prashant.databinding.ui;
+package com.example.prashant.databinding.observer;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.example.prashant.databinding.data.Contact;
 import com.example.prashant.databinding.repo.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-class ItemViewModel extends ViewModel {
+public class ItemViewModel extends ViewModel {
     private LiveData<List<Contact>> contacts;
     private Repository repository;
 

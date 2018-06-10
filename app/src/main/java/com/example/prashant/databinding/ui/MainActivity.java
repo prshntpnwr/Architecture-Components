@@ -10,12 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import com.example.prashant.databinding.R;
 import com.example.prashant.databinding.databinding.ActivityMainBinding;
 import com.example.prashant.databinding.data.Contact;
+import com.example.prashant.databinding.observer.ItemViewModel;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Contact> contactArrayList = new ArrayList<>();
-    private ItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = mainBinding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter =  new ItemAdapter(contactArrayList);
+        ItemAdapter adapter = new ItemAdapter(contactArrayList);
         recyclerView.setAdapter(adapter);
 
         // Create a ViewModel the first time the system calls an activity's onCreate() method.
         // Re-created activities receive the same MyViewModel instance created by the first activity.
         ItemViewModel model = ViewModelProviders.of(this).get(ItemViewModel.class);
-        model.getContacts().observe(this, users -> {
-            // update UI
-            adapter.notifyDataSetChanged();
+        model.getContacts().observe(this, list -> {
+            contactArrayList.addAll(list);
+            // Update UI
         });
     }
 }
