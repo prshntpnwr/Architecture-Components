@@ -23,7 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Module used to provide dependencies at an application-level.
  */
-
 @Module(includes = {ViewModelModule.class})
 public class AppModule {
     // database injection
@@ -53,9 +52,6 @@ public class AppModule {
         return new Repository(webservice, contactDao, executor);
     }
 
-    // network injections
-    String BASE_URL = "https://api.contact.com/";
-
     @Provides
     public Gson provideGson() {
         return new GsonBuilder().create();
@@ -63,6 +59,7 @@ public class AppModule {
 
     @Provides
     public Retrofit provideRetrofit(Gson gson) {
+        String BASE_URL = "https://api.contact.com/";
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(BASE_URL)

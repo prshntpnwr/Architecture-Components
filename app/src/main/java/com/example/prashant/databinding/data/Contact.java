@@ -13,7 +13,7 @@ import android.support.annotation.NonNull;
  * checkout {@link-https://medium.com/google-developers/viewmodels-a-simple-example-ed5ac416317e}
  * for starters
  */
-@Entity(tableName = "contact")
+@Entity
 public class Contact {
     // data to be maintain during activity life cycle
     @PrimaryKey
@@ -43,7 +43,7 @@ public class Contact {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
