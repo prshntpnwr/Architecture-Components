@@ -28,7 +28,7 @@ public class Contact {
      * parameterized constructor for setting data directly
      */
     @Ignore
-    public Contact(String id, String name, String mobile, String email, String address) {
+    public Contact(@NonNull String id, String name, String mobile, String email, String address) {
         this.id = id;
         this.name = name;
         this.mobile = mobile;
@@ -39,6 +39,7 @@ public class Contact {
     /**
      * getting and setter methods
      */
+    @NonNull
     public String getId() {
         return id;
     }

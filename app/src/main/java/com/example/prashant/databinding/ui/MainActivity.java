@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.container, new ListItemFragment())
+                    .replace(mainBinding.container.getId(), ListItemFragment.newInstance(""))
                     .commit();
         }
     }

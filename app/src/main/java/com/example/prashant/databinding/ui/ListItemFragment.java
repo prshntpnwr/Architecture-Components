@@ -45,7 +45,7 @@ public class ListItemFragment extends Fragment {
     private ArrayList<Contact> contactArrayList = new ArrayList<>();
 
     @Inject
-    private ItemFactory itemFactory;
+    public ItemFactory itemFactory;
     private ItemViewModel model;
 
     public ListItemFragment() {
@@ -78,6 +78,7 @@ public class ListItemFragment extends Fragment {
         // Create a ViewModel the first time the system calls an activity's onCreate() method.
         // Re-created activities receive the same MyViewModel instance created by the first activity.
         model = ViewModelProviders.of(this, itemFactory).get(ItemViewModel.class);
+        model.init();
     }
 
     @Override

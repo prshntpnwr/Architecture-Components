@@ -26,5 +26,4 @@ public interface ContactDao {
 
     @Update
     void update(Contact contact);
-
 }

@@ -22,4 +22,8 @@ public class ItemViewModel extends ViewModel {
     public LiveData<List<Contact>> getContacts() {
         return this.contacts == null ? repository.get() : contacts;
     }
+
+    public void init() {
+        this.contacts = repository.get();
+    }
 }
