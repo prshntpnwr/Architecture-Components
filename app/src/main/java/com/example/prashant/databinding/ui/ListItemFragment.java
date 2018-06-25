@@ -1,5 +1,6 @@
 package com.example.prashant.databinding.ui;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -24,6 +25,8 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import dagger.android.support.AndroidSupportInjection;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -45,7 +48,8 @@ public class ListItemFragment extends Fragment {
     private ArrayList<Contact> contactArrayList = new ArrayList<>();
 
     @Inject
-    public ItemFactory itemFactory;
+    public ViewModelProvider.Factory itemFactory;
+
     private ItemViewModel model;
 
     public ListItemFragment() {
@@ -86,9 +90,8 @@ public class ListItemFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FragmentListItemBinding binding = DataBindingUtil.
-                setContentView(Objects.requireNonNull(getActivity()),
-                        R.layout.fragment_list_item);
+        FragmentListItemBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_list_item, container, false);
 
         RecyclerView recyclerView = binding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -114,6 +117,10 @@ public class ListItemFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+        // config dagger
+        AndroidSupportInjection.inject(this);
+
 //        if (context instanceof OnFragmentInteractionListener) {
 //            mListener = (OnFragmentInteractionListener) context;
 //        } else {
