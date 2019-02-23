@@ -31,6 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     // Configure only for each module that uses Java 8
     // language features (either in its source code or
     // through dependencies).
@@ -58,8 +59,6 @@ dependencies {
     implementation deps.dagger.android_support
     implementation deps.constraint_layout
 
-    testImplementation deps.junit
-
     annotationProcessor deps.dagger.android_support_compiler
     annotationProcessor deps.dagger.compiler
     annotationProcessor(deps.room.compiler, {
@@ -72,6 +71,7 @@ dependencies {
     androidTestImplementation deps.support.cardview
     androidTestImplementation deps.support.design
 
+    testImplementation deps.junit
     androidTestImplementation(deps.espresso.core, {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'

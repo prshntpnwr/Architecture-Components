@@ -14,7 +14,7 @@ constructor(private val repository: Repository) : ViewModel() {
     var contacts = MutableLiveData<List<Contact>>()
 
     fun getContacts(): LiveData<List<Contact>> {
-        return if (this.contacts == null) repository.get() else contacts
+        return if (this.contacts.value == null) repository.get() else contacts
     }
 
     fun init() {
