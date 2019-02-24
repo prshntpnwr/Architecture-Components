@@ -4,13 +4,14 @@ import android.arch.lifecycle.LiveData
 import com.example.prashant.databinding.data.Contact
 import com.example.prashant.databinding.data.ContactDao
 import com.example.prashant.databinding.remote.Webservice
+import com.example.prashant.databinding.utils.AppExecutors
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
 class Repository @Inject constructor(
         val webservice: Webservice,
         val contactDao: ContactDao,
-        val executor: Executor) {
+        val executor: AppExecutors) {
 
     fun get(): LiveData<List<Contact>> {
         refreshTask()
@@ -25,7 +26,7 @@ class Repository @Inject constructor(
         // Update the database.The LiveData will automatically refresh so
         // we don't need to do anything else here besides updating the database
 
-        executor.execute {
+        executor.diskIO().execute {
             var i = 0
             do {
                 contactDao.save(Contact((i + 1), "Name",

@@ -7,6 +7,7 @@ import com.example.prashant.databinding.data.ContactDao
 import com.example.prashant.databinding.data.ContactDatabase
 import com.example.prashant.databinding.remote.Webservice
 import com.example.prashant.databinding.repo.Repository
+import com.example.prashant.databinding.utils.AppExecutors
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -43,13 +44,13 @@ class AppModule {
 
     // repository injection
     @Provides
-    fun provideExecutor(): Executor {
-        return Executors.newSingleThreadExecutor()
+    fun provideExecutor(): AppExecutors {
+        return AppExecutors()
     }
 
     @Provides
     @Singleton
-    fun provideContactRepository(webservice: Webservice, contactDao: ContactDao, executor: Executor): Repository {
+    fun provideContactRepository(webservice: Webservice, contactDao: ContactDao, executor: AppExecutors): Repository {
         return Repository(webservice, contactDao, executor)
     }
 

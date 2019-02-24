@@ -12,11 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.prashant.databinding.R
 import com.example.prashant.databinding.binding.FragmentDataBindingComponent
-import com.example.prashant.databinding.data.Contact
 import com.example.prashant.databinding.databinding.ListBinding
 import com.example.prashant.databinding.di.Injectable
 import com.example.prashant.databinding.observer.ItemViewModel
-import java.util.*
+import com.example.prashant.databinding.utils.AppExecutors
+import com.example.prashant.databinding.utils.autoCleared
 import javax.inject.Inject
 
 /**
@@ -28,7 +28,6 @@ import javax.inject.Inject
  * create an instance of this fragment.
  */
 class ListItemFragment : Fragment(), Injectable {
-    private val contactArrayList = ArrayList<Contact>()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -36,9 +35,14 @@ class ListItemFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModel: ItemViewModel
 
-    lateinit var binding: ListBinding
+    @Inject
+    lateinit var executors: AppExecutors
+
+    var binding by autoCleared<ListBinding>()
 
     var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
+
+    lateinit var mAdapter: ItemAdapter
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -60,18 +64,17 @@ class ListItemFragment : Fragment(), Injectable {
                 .of(this, viewModelFactory)
                 .get(ItemViewModel::class.java)
 
+        mAdapter = ItemAdapter(dataBindingComponent, executors, null)
+
         binding.let {
-            it.rvList.adapter = ItemAdapter(contactArrayList)
+            it.rvList.adapter = mAdapter
             it.lifecycleOwner = this
-            it.executePendingBindings()
         }
 
         viewModel.let {
             it.init()
-            it.contacts.observe(this, Observer{ list ->
-                // Update UI
-                contactArrayList.clear()
-                contactArrayList.addAll(list!!)
+            it.contacts.observe(this, Observer { list ->
+                mAdapter.submitList(list)
             })
         }
     }
