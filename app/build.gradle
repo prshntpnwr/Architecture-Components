@@ -22,6 +22,16 @@ android {
             enabled = true
         }
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+        androidExtensions {
+            experimental = true
+        }
+
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -50,26 +60,27 @@ dependencies {
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
     implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
+    annotationProcessor deps.lifecycle.compiler
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
     implementation deps.kotlin.stdlib
-
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
     implementation deps.constraint_layout
-
-    annotationProcessor deps.dagger.android_support_compiler
-    annotationProcessor deps.dagger.compiler
-    annotationProcessor(deps.room.compiler, {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    annotationProcessor deps.lifecycle.compiler
-
     androidTestImplementation deps.support.app_compat
     androidTestImplementation deps.support.recyclerview
     androidTestImplementation deps.support.cardview
     androidTestImplementation deps.support.design
+    androidTestImplementation deps.support.annotations
+
+    implementation deps.dagger.runtime
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.compiler
+
+    kapt(deps.room.compiler, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 
     testImplementation deps.junit
     androidTestImplementation(deps.espresso.core, {

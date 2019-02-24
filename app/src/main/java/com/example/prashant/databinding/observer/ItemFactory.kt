@@ -9,8 +9,10 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Singleton
-class ItemFactory @Inject
-constructor(private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>) : ViewModelProvider.Factory {
+class ItemFactory @Inject constructor(
+        private val creators: Map<Class<out ViewModel>,
+                Provider<ViewModel>>
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         var creator: Provider<out ViewModel>? = creators[modelClass]
@@ -30,6 +32,5 @@ constructor(private val creators: Map<Class<out ViewModel>, Provider<ViewModel>>
         } catch (e: Exception) {
             throw RuntimeException(e)
         }
-
     }
 }

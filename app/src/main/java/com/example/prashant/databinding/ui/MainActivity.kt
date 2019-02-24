@@ -20,21 +20,23 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @Inject
     var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>? = null
 
+    override fun supportFragmentInjector(): AndroidInjector<Fragment>? {
+        return this.dispatchingAndroidInjector
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // config dagger
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        val mainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val mainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(
+                this,
+                R.layout.activity_main)
 
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(mainBinding.container.id, ListItemFragment.newInstance(""))
+                    .replace(mainBinding.container.id,  ListItemFragment())
                     .commit()
         }
-    }
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment>? {
-        return this.dispatchingAndroidInjector
     }
 }

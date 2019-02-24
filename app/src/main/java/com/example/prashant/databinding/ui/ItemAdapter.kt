@@ -13,15 +13,24 @@ import java.util.ArrayList
 /**
  * Created by prashant on 18/5/18.
  */
+class ItemAdapter internal constructor(
+        private val contactArrayList: ArrayList<Contact>
+) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
-class ItemAdapter internal constructor(private val contactArrayList: ArrayList<Contact>) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAdapter.ViewHolder {
-        val itemBinding = ContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup,
+                                    viewType: Int
+    ): ItemAdapter.ViewHolder {
+        val itemBinding = ContactBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
         return ViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: ItemAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+            holder: ItemAdapter.ViewHolder,
+            position: Int
+    ) {
         holder.bind(contactArrayList[position])
     }
 
@@ -32,7 +41,6 @@ class ItemAdapter internal constructor(private val contactArrayList: ArrayList<C
     inner class ViewHolder(private val binding: ContactBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Contact) {
-            Log.d("Item Adapter ", item.name)
             binding.contact = item
             binding.executePendingBindings()
         }

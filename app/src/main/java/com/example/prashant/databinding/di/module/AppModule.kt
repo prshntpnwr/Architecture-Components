@@ -29,9 +29,10 @@ class AppModule {
     @Provides
     @Singleton
     fun provideDatabase(application: Application): ContactDatabase {
-        return Room.databaseBuilder(application,
-                ContactDatabase::class.java, "contact.db")
-                .build()
+        return Room.databaseBuilder(
+                application,
+                ContactDatabase::class.java,
+                "contact.db").build()
     }
 
     @Provides
@@ -59,10 +60,10 @@ class AppModule {
 
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit {
-        val BASE_URL = "https://api.contact.com/"
+        val baseUrl = "https://api.contact.com/"
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(BASE_URL)
+                .baseUrl(baseUrl)
                 .build()
     }
 

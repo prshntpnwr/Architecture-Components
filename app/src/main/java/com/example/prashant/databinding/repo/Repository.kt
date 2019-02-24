@@ -12,9 +12,9 @@ import java.util.concurrent.Executor
 import javax.inject.Inject
 
 class Repository @Inject constructor(
-        private val webservice: Webservice,
-        private val contactDao: ContactDao,
-        private val executor: Executor) {
+        val webservice: Webservice,
+        val contactDao: ContactDao,
+        val executor: Executor) {
 
     fun get(): LiveData<List<Contact>> {
         refreshTask()
@@ -32,7 +32,7 @@ class Repository @Inject constructor(
         executor.execute {
             var i = 0
             do {
-                contactDao.save(Contact((i + 1).toString(), "Name",
+                contactDao.save(Contact((i + 1), "Name",
                         "111-222-3333", "a@b.com", "random"))
                 i++
             } while (i < 10)

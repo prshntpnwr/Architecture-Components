@@ -1,18 +1,19 @@
 package com.example.prashant.databinding.di
 
 import android.app.Application
-
 import com.example.prashant.databinding.di.module.ActivityModule
 import com.example.prashant.databinding.di.module.AppModule
-import com.example.prashant.databinding.di.module.FragmentModule
-
 import javax.inject.Singleton
-
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.support.AndroidSupportInjectionModule
 
 @Singleton
-@Component(modules = [ActivityModule::class, FragmentModule::class, AppModule::class])
+@Component(modules = [(AndroidSupportInjectionModule::class),
+    (AndroidInjectionModule::class),
+    (AppModule::class),
+    (ActivityModule::class)])
 interface AppComponent {
 
     @Component.Builder

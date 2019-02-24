@@ -9,8 +9,9 @@ import com.example.prashant.databinding.repo.Repository
 
 import javax.inject.Inject
 
-class ItemViewModel @Inject
-constructor(private val repository: Repository) : ViewModel() {
+class ItemViewModel @Inject constructor(
+        val repository: Repository
+) : ViewModel() {
     var contacts = MutableLiveData<List<Contact>>()
 
     fun getContacts(): LiveData<List<Contact>> {
