@@ -18,7 +18,7 @@ import dagger.android.support.HasSupportFragmentInjector
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
-    var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>? = null
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment>? {
         return this.dispatchingAndroidInjector

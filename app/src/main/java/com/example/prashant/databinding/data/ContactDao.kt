@@ -13,13 +13,13 @@ interface ContactDao {
     fun save(contact: Contact)
 
     @Query("SELECT * FROM contact WHERE id = :id")
-    fun load(id: String): LiveData<Contact>
+    fun load(id: Int): LiveData<Contact>
 
     @Query("SELECT * FROM contact")
     fun loadAll(): LiveData<List<Contact>>
 
     @Query("DELETE FROM contact WHERE id = :id")
-    fun delete(id: String)
+    fun delete(id: Int)
 
     @Update
     fun update(contact: Contact)

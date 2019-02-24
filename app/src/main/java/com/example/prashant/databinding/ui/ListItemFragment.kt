@@ -29,7 +29,7 @@ class ListItemFragment : Fragment(), Injectable {
     private val contactArrayList = ArrayList<Contact>()
 
     @Inject
-    lateinit var itemFactory: ViewModelProvider.Factory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var viewModel: ItemViewModel
@@ -52,7 +52,7 @@ class ListItemFragment : Fragment(), Injectable {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders
-                .of(this, itemFactory)
+                .of(this, viewModelFactory)
                 .get(ItemViewModel::class.java)
 
         binding.let {
