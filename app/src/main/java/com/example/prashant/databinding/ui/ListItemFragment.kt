@@ -3,6 +3,7 @@ package com.example.prashant.databinding.ui
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingComponent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,8 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.prashant.databinding.R
+import com.example.prashant.databinding.binding.FragmentDataBindingComponent
 import com.example.prashant.databinding.data.Contact
-import com.example.prashant.databinding.databinding.FragmentListItemBinding
+import com.example.prashant.databinding.databinding.ListBinding
 import com.example.prashant.databinding.di.Injectable
 import com.example.prashant.databinding.observer.ItemViewModel
 import java.util.*
@@ -34,7 +36,9 @@ class ListItemFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModel: ItemViewModel
 
-    lateinit var binding: FragmentListItemBinding
+    lateinit var binding: ListBinding
+
+    var dataBindingComponent: DataBindingComponent = FragmentDataBindingComponent(this)
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -45,7 +49,8 @@ class ListItemFragment : Fragment(), Injectable {
                 inflater,
                 R.layout.fragment_list_item,
                 container,
-                false)
+                false,
+                dataBindingComponent)
         return binding.root
     }
 
@@ -56,7 +61,7 @@ class ListItemFragment : Fragment(), Injectable {
                 .get(ItemViewModel::class.java)
 
         binding.let {
-            it.recyclerView.adapter = ItemAdapter(contactArrayList)
+            it.rvList.adapter = ItemAdapter(contactArrayList)
             it.lifecycleOwner = this
             it.executePendingBindings()
         }

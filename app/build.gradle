@@ -66,6 +66,7 @@ dependencies {
     annotationProcessor deps.lifecycle.compiler
     implementation deps.retrofit.runtime
     implementation deps.retrofit.gson
+    implementation deps.glide
     implementation deps.kotlin.stdlib
     implementation deps.constraint_layout
     androidTestImplementation deps.support.app_compat
