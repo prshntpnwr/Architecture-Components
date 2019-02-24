@@ -15,14 +15,12 @@ class App : Application(), HasActivityInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
+    override fun activityInjector() = dispatchingAndroidInjector
+
     override fun onCreate() {
         super.onCreate()
         initDagger()
         context = applicationContext
-    }
-
-    override fun activityInjector(): DispatchingAndroidInjector<Activity>? {
-        return dispatchingAndroidInjector
     }
 
     private fun initDagger() {

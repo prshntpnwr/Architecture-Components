@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
@@ -71,6 +73,8 @@ dependencies {
     androidTestImplementation deps.support.cardview
     androidTestImplementation deps.support.design
     androidTestImplementation deps.support.annotations
+    implementation deps.navigation.fragment_ktx
+    androidTestImplementation deps.navigation.testing_ktx
 
     implementation deps.dagger.runtime
     implementation deps.dagger.android
