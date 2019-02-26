@@ -1,12 +1,10 @@
 package com.example.prashant.databinding.di.module
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
-
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.prashant.databinding.di.ViewModelKey
 import com.example.prashant.databinding.observer.ItemViewModel
 import com.example.prashant.databinding.observer.ViewModelFactory
-
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

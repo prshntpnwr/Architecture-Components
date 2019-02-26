@@ -1,6 +1,6 @@
 package com.example.prashant.databinding.binding
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.view.View
 
 /**

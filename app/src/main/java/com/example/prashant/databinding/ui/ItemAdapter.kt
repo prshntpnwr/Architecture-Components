@@ -1,20 +1,15 @@
 package com.example.prashant.databinding.ui
 
-import android.databinding.DataBindingComponent
-import android.databinding.DataBindingUtil
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
-import android.util.Log
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingComponent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import com.example.prashant.databinding.R
-
 import com.example.prashant.databinding.data.Contact
 import com.example.prashant.databinding.databinding.ContactBinding
 import com.example.prashant.databinding.utils.AppExecutors
 import com.example.prashant.databinding.utils.DataBoundListAdapter
-
-import java.util.ArrayList
 
 /**
  * Created by prashant on 18/5/18.

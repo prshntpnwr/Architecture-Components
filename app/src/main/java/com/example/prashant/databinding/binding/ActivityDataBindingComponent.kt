@@ -1,7 +1,7 @@
 package com.example.prashant.databinding.binding
 
 import android.app.Activity
-import android.databinding.DataBindingComponent
+import androidx.databinding.DataBindingComponent
 
 /**
  * A Data Binding Component implementation for activities.

@@ -1,8 +1,7 @@
 package com.example.prashant.databinding.di.module
 
 import android.app.Application
-import android.arch.persistence.room.Room
-
+import androidx.room.Room
 import com.example.prashant.databinding.data.ContactDao
 import com.example.prashant.databinding.data.ContactDatabase
 import com.example.prashant.databinding.remote.Webservice
@@ -10,16 +9,11 @@ import com.example.prashant.databinding.repo.Repository
 import com.example.prashant.databinding.utils.AppExecutors
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-
-import java.util.concurrent.Executor
-import java.util.concurrent.Executors
-
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 /**
  * Module used to provide dependencies at an application-level.

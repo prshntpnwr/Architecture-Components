@@ -1,7 +1,7 @@
 package com.example.prashant.databinding.binding
 
-import android.databinding.DataBindingComponent
-import android.support.v4.app.Fragment
+import androidx.databinding.DataBindingComponent
+import androidx.fragment.app.Fragment
 
 /**
  * A Data Binding Component implementation for fragments.

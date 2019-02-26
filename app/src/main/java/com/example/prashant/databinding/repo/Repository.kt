@@ -1,11 +1,10 @@
 package com.example.prashant.databinding.repo
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.example.prashant.databinding.data.Contact
 import com.example.prashant.databinding.data.ContactDao
 import com.example.prashant.databinding.remote.Webservice
 import com.example.prashant.databinding.utils.AppExecutors
-import java.util.concurrent.Executor
 import javax.inject.Inject
 
 class Repository @Inject constructor(

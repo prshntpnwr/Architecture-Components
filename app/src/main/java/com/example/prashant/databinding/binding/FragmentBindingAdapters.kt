@@ -1,10 +1,10 @@
 package com.example.prashant.databinding.binding
 
-import android.databinding.BindingAdapter
-import android.support.v4.app.Fragment
+import androidx.databinding.BindingAdapter
 import android.view.View
 import com.bumptech.glide.Glide
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import javax.inject.Inject
 
 /**
