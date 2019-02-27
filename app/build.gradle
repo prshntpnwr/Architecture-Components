@@ -76,6 +76,7 @@ dependencies {
     androidTestImplementation deps.support.annotations
     implementation deps.navigation.fragment_ktx
     androidTestImplementation deps.navigation.testing_ktx
+    implementation deps.ktxCore
 
     implementation deps.dagger.runtime
     implementation deps.dagger.android

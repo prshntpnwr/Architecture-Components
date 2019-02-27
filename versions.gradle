@@ -16,6 +16,7 @@ versions.okhttp_logging_interceptor = "3.9.0"
 versions.dexmaker = "2.2.0"
 versions.constraint_layout = "1.0.2"
 versions.android_gradle_plugin = '3.3.1'
+versions.ktxCore = "1.0.1"
 def deps = [:]
 
 def support = [:]
@@ -78,6 +79,7 @@ kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
 deps.kotlin = kotlin
 
+deps.ktxCore = "androidx.core:core-ktx:$versions.ktxCore"
 deps.glide = "com.github.bumptech.glide:glide:$versions.glide"
 deps.constraint_layout = "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
 deps.junit = "junit:junit:$versions.junit"
