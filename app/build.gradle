@@ -88,13 +88,30 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    testImplementation deps.junit
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation(deps.espresso.core, {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
+
     androidTestImplementation(deps.espresso.contrib, {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.google.code.findbugs', module: 'jsr305'
     })
+
+    androidTestImplementation deps.espresso.intents
+    androidTestImplementation deps.support.test_runner
+    testImplementation(deps.arch_core.testing, {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
+    
+    androidTestImplementation deps.arch_core.testing
+    testImplementation deps.mockito.core
+    androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
+    testImplementation deps.roboelectric
+    androidTestImplementation deps.roboelectric
+    androidTestImplementation deps.support.annotations
+    androidTestImplementation deps.dexmaker
 }
