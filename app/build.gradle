@@ -8,6 +8,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'jacoco'
+
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
@@ -20,9 +22,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        dataBinding {
-            enabled = true
-        }
+        dataBinding { enabled = true }
+
+        //for handling http client not fount error from Roboletrics
+        useLibrary 'org.apache.http.legacy'
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -30,9 +33,7 @@ android {
             }
         }
 
-        androidExtensions {
-            experimental = true
-        }
+        androidExtensions { experimental = true }
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -44,6 +45,10 @@ android {
         }
     }
 
+    sourceSets {
+        main.java.srcDirs += 'src/main/java'
+    }
+
     // Configure only for each module that uses Java 8
     // language features (either in its source code or
     // through dependencies).
@@ -51,6 +56,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
+
+jacoco {
+    toolVersion = "0.7.4+"
 }
 
 dependencies {
@@ -106,7 +115,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-core-utils'
     })
-    
+
     androidTestImplementation deps.arch_core.testing
     testImplementation deps.mockito.core
     androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
@@ -114,4 +123,31 @@ dependencies {
     androidTestImplementation deps.roboelectric
     androidTestImplementation deps.support.annotations
     androidTestImplementation deps.dexmaker
+
+    task fullCoverageReport(type: JacocoReport) {
+        dependsOn 'createDebugCoverageReport'
+        dependsOn 'testDebugUnitTest'
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+
+        def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
+                          '**/*Test*.*', 'android/**/*.*',
+                          '**/*_MembersInjector.class',
+                          '**/Dagger*Component.class',
+                          '**/Dagger*Component$Builder.class',
+                          '**/*_*Factory.class',
+                          '**/*ComponentImpl.class',
+                          '**/*SubComponentBuilder.class']
+        def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+        def mainSrc = "${project.projectDir}/src/main/java"
+
+        sourceDirectories = files([mainSrc])
+        classDirectories = files([debugTree])
+        executionData = fileTree(dir: "$buildDir", includes: [
+                "jacoco/testDebugUnitTest.exec",
+                "outputs/code-coverage/connected/*coverage.ec"
+        ])
+    }
 }
