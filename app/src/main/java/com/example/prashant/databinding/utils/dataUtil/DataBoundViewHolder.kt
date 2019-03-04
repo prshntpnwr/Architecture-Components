@@ -1,4 +1,4 @@
-package com.example.prashant.databinding.utils
+package com.example.prashant.databinding.utils.dataUtil
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

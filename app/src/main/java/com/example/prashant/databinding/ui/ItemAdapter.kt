@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.prashant.databinding.R
 import com.example.prashant.databinding.data.Contact
 import com.example.prashant.databinding.databinding.ContactBinding
-import com.example.prashant.databinding.utils.AppExecutors
-import com.example.prashant.databinding.utils.DataBoundListAdapter
+import com.example.prashant.databinding.utils.dataUtil.AppExecutors
+import com.example.prashant.databinding.utils.dataUtil.DataBoundListAdapter
 
 /**
  * Created by prashant on 18/5/18.

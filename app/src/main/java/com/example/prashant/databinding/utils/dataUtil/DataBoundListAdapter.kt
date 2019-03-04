@@ -1,4 +1,4 @@
-package com.example.prashant.databinding.utils
+package com.example.prashant.databinding.utils.dataUtil
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding

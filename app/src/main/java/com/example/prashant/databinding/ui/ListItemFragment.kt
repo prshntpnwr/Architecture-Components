@@ -15,8 +15,8 @@ import com.example.prashant.databinding.binding.FragmentDataBindingComponent
 import com.example.prashant.databinding.databinding.ListBinding
 import com.example.prashant.databinding.di.Injectable
 import com.example.prashant.databinding.observer.ItemViewModel
-import com.example.prashant.databinding.utils.AppExecutors
-import com.example.prashant.databinding.utils.autoCleared
+import com.example.prashant.databinding.utils.dataUtil.AppExecutors
+import com.example.prashant.databinding.utils.dataUtil.autoCleared
 import javax.inject.Inject
 
 /**
