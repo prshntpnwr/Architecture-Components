@@ -1,12 +1,17 @@
 package com.example.prashant.databinding.di.module
 
 import android.app.Application
+import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import androidx.room.Room
 import com.example.prashant.databinding.data.ContactDao
 import com.example.prashant.databinding.data.ContactDatabase
 import com.example.prashant.databinding.remote.Webservice
 import com.example.prashant.databinding.repo.Repository
 import com.example.prashant.databinding.utils.dataUtil.AppExecutors
+import com.example.prashant.databinding.utils.remoteUtils.LiveDataCallAdapterFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -36,7 +41,6 @@ class AppModule {
         return database.contactDao()
     }
 
-    // repository injection
     @Provides
     fun provideExecutor(): AppExecutors {
         return AppExecutors()
@@ -44,8 +48,38 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideContactRepository(webservice: Webservice, contactDao: ContactDao, executor: AppExecutors): Repository {
+    fun provideContactRepository(
+            webservice: Webservice,
+            contactDao: ContactDao,
+            executor: AppExecutors
+    ): Repository {
         return Repository(webservice, contactDao, executor)
+    }
+
+    /**
+     * Pagination injection
+     */
+    @Provides
+    @Singleton
+    fun providePagingConfig(): PagedList.Config {
+        return PagedList.Config.Builder()
+                .setPageSize(10)
+                .setInitialLoadSizeHint(30)
+                .setPrefetchDistance(10)
+                .setEnablePlaceholders(true)
+                .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providePageBuilder(
+            source: DataSource.Factory<Int, Any>,
+            config: PagedList.Config,
+            executor: AppExecutors
+    ): LiveData<PagedList<Any>> {
+        return LivePagedListBuilder(source, config)
+                .setFetchExecutor(executor.diskIO())
+                .build()
     }
 
     @Provides
@@ -58,6 +92,7 @@ class AppModule {
         val baseUrl = "https://api.contact.com/"
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .baseUrl(baseUrl)
                 .build()
     }

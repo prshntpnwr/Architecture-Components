@@ -87,6 +87,8 @@ dependencies {
     implementation deps.navigation.fragment_ktx
     androidTestImplementation deps.navigation.testing_ktx
     implementation deps.ktxCore
+    implementation deps.paging
+    implementation deps.lifecycle.paging
 
     implementation deps.dagger.runtime
     implementation deps.dagger.android
