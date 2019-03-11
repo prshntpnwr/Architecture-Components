@@ -10,7 +10,8 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
 
 @Singleton
-@Component(modules = [(AndroidSupportInjectionModule::class),
+@Component(modules = [
+    (AndroidSupportInjectionModule::class),
     (AndroidInjectionModule::class),
     (AppModule::class),
     (ActivityModule::class)])
