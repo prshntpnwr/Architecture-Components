@@ -10,7 +10,7 @@ import com.example.prashant.databinding.data.ContactDao
 import com.example.prashant.databinding.data.ContactDatabase
 import com.example.prashant.databinding.remote.Webservice
 import com.example.prashant.databinding.repo.Repository
-import com.example.prashant.databinding.utils.dataUtil.AppExecutors
+import com.example.prashant.databinding.utils.extensionUtil.AppExecutors
 import com.example.prashant.databinding.utils.remoteUtils.LiveDataCallAdapterFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

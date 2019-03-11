@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.prashant.databinding.data.Contact
 import com.example.prashant.databinding.data.ContactDao
 import com.example.prashant.databinding.remote.Webservice
-import com.example.prashant.databinding.utils.dataUtil.AppExecutors
+import com.example.prashant.databinding.utils.extensionUtil.AppExecutors
 import javax.inject.Inject
 
 class Repository @Inject constructor(

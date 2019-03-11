@@ -4,7 +4,7 @@ import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.example.prashant.databinding.utils.dataUtil.AppExecutors
+import com.example.prashant.databinding.utils.extensionUtil.AppExecutors
 
 /**
  * A generic class that can provide a resource backed by both the room database and the network.
@@ -15,7 +15,8 @@ import com.example.prashant.databinding.utils.dataUtil.AppExecutors
  * @param <RequestType>
 </RequestType></ResultType> */
 abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constructor(
-        val appExecutors: AppExecutors) {
+        private val appExecutors: AppExecutors
+) {
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 

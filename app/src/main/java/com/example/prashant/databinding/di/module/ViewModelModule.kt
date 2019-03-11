@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.prashant.databinding.di.ViewModelKey
 import com.example.prashant.databinding.observer.ItemViewModel
-import com.example.prashant.databinding.utils.dataUtil.ViewModelFactory
+import com.example.prashant.databinding.utils.extensionUtil.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
