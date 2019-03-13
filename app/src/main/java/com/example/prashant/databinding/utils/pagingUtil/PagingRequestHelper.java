@@ -1,4 +1,4 @@
-package com.example.prashant.databinding.utils.extensionUtil;
+package com.example.prashant.databinding.utils.pagingUtil;
 
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;

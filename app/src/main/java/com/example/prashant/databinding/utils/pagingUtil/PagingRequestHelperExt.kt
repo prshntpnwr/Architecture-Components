@@ -1,4 +1,4 @@
-package com.example.prashant.databinding.utils.extensionUtil
+package com.example.prashant.databinding.utils.pagingUtil
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
