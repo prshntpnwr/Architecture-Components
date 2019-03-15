@@ -68,7 +68,9 @@ class ListItemFragment : BaseFragment(), Injectable {
                 .of(this, viewModelFactory)
                 .get(ItemViewModel::class.java)
 
-        mAdapter = ItemAdapter(dataBindingComponent, executors) {
+        mAdapter = ItemAdapter(dataBindingComponent, executors, null)
+
+        binding.fab.setOnClickListener {
             requestCall()
         }
 
