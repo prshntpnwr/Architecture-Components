@@ -9,10 +9,10 @@ class PermissionManager : ComponentLifecycleObserver, PermissionDelegate {
     private val requestMap = HashMap<Int, PermissionPriority>()
     private val pendingResults = HashMap<Int, PermissionResult>()
 
-    private lateinit var permissionRequester: PermissionRequester
+    private lateinit var permissionRequester: PermissionRequester<*>
 
     override fun <T> initWith(owner: T) {
-        permissionRequester = PermissionRequester(owner as Any)
+        permissionRequester = PermissionRequester(owner)
     }
 
     fun onRequestPermissionsResult(
@@ -29,30 +29,30 @@ class PermissionManager : ComponentLifecycleObserver, PermissionDelegate {
 
     override fun requestAndRun(
             permissions: List<String>,
-            failAction: (List<String>) -> Unit,
-            action: () -> Unit
+            failAction: ((List<String>) -> Unit)?,
+            action: (() -> Unit)?
     ) {
         request(permissions, PermissionPriority.create(PERMISSION_LOW, failAction, action), action)
     }
 
     override fun requestThenRun(
             permissions: List<String>,
-            failAction: (List<String>) -> Unit,
-            action: () -> Unit
+            failAction: ((List<String>) -> Unit)?,
+            action: (() -> Unit)?
     ) {
         request(permissions, PermissionPriority.create(PERMISSION_HIGH, failAction, action), action)
     }
 
-    fun request(
+    private fun request(
             permissions: List<String>,
             handler: PermissionPriority,
-            action: () -> Unit
+            action: (() -> Unit)?
     ) {
         val notGrantedPermissions = ArrayList(permissions.filterNot { permissionRequester.isGranted(it) })
         val permissionArray = notGrantedPermissions.toTypedArray()
 
         if (permissionArray.isEmpty()) {
-            action()
+            action?.invoke()
         } else {
             val id = Math.abs(handler.hashCode().toShort().toInt())
             requestMap[id] = handler

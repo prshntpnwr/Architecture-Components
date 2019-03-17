@@ -47,8 +47,8 @@ open class BaseFragment : Fragment() {
       */
     fun requestThenRun(
             permissions: List<String>,
-            failAction: (List<String>) -> Unit,
-            action: () -> Unit
+            failAction: ((List<String>) -> Unit)?,
+            action: (() -> Unit)
     ) {
         permissionManager.requestThenRun(
                 permissions = permissions,

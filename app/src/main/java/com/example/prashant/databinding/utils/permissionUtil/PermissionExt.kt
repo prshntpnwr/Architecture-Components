@@ -14,7 +14,7 @@ fun <T> Lifecycle.addObserver(observer: ComponentLifecycleObserver, owner: T) {
 
 interface PermissionDelegate {
 
-    fun requestAndRun(permissions: List<String>, failAction: (List<String>) -> Unit, action: () -> Unit)
+    fun requestAndRun(permissions: List<String>, failAction: ((List<String>) -> Unit)?, action: (() -> Unit)?)
 
-    fun requestThenRun(permissions: List<String>, failAction: (List<String>) -> Unit, action: () -> Unit)
+    fun requestThenRun(permissions: List<String>,  failAction: ((List<String>) -> Unit)?, action: (() -> Unit)?)
 }

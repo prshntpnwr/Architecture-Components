@@ -7,8 +7,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
 
-class PermissionRequester(owner: Any) {
-    private val mOwner: Any = owner
+class PermissionRequester<T>(owner: T) {
+    private val mOwner = owner
     private val context: Context = when (owner) {
         is Activity -> owner
         else -> (owner as Fragment).requireContext()

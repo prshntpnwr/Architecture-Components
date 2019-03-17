@@ -11,8 +11,9 @@ abstract class PermissionPriority {
         const val PERMISSION_LOW = 1
 
         fun create(permission: Int,
-                   failAction: (List<String>) -> Unit?,
-                   action: () -> Unit?): PermissionPriority {
+                   failAction: ((List<String>) -> Unit?)?,
+                   action: (() -> Unit?)?
+        ): PermissionPriority {
             return when (permission) {
                 PERMISSION_HIGH -> HighPriorityPermission(failAction, action)
                 PERMISSION_LOW -> LowPriorityPermission(failAction, action)
@@ -23,29 +24,29 @@ abstract class PermissionPriority {
 }
 
 class HighPriorityPermission(
-        val failAction: (List<String>) -> Unit?,
-        val action: () -> Unit?
+        val failAction: ((List<String>) -> Unit?)?,
+        val action: (() -> Unit?)?
 ) : PermissionPriority() {
 
     override fun onPermissionResult(permissions: Array<out String>, grantResults: IntArray) {
         val denied = grantResults.indices.filter { grantResults[it] != PERMISSION_GRANTED }
         if (denied.isEmpty())
-            action()
+            action?.invoke()
         else
-            failAction(denied.map { permissions[it] })
+            failAction?.invoke(denied.map { permissions[it] })
     }
 }
 
 class LowPriorityPermission(
-        val failAction: (List<String>) -> Unit?,
-        val action: () -> Unit?
+        val failAction: ((List<String>) -> Unit?)?,
+        val action: (() -> Unit?)?
 ) : PermissionPriority() {
 
     override fun onPermissionResult(permissions: Array<out String>, grantResults: IntArray) {
         val denied = grantResults.indices.filter { grantResults[it] != PERMISSION_GRANTED }
         if (denied.isEmpty())
-            action()
+            action?.invoke()
         else
-            failAction(emptyList())
+            failAction?.invoke(emptyList())
     }
 }
