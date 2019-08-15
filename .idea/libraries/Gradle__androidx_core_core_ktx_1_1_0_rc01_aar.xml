@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.core:core-ktx:1.1.0-rc01@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/core-ktx-1.1.0-rc01.aar/69a1c3b9bbd652c6ed58d566a8ceb621/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/core-ktx-1.1.0-rc01.aar/69a1c3b9bbd652c6ed58d566a8ceb621/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.core/core-ktx/1.1.0-rc01/8e51cf92327310f53f74ba17a62d465f6fdde392/core-ktx-1.1.0-rc01-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

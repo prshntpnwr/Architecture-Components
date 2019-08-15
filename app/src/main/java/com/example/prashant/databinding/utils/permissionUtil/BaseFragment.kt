@@ -1,7 +1,7 @@
 package com.example.prashant.databinding.utils.permissionUtil
 
 import android.content.Context
-import androidx.fragment.app.Fragment
+import android.support.v4.app.Fragment
 
 /**
  * A simple [Fragment] class,
